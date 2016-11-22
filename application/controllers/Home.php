@@ -11,7 +11,6 @@ class Home extends CI_Controller {
     {
         $data['title'] =$page;
         $this->load->view($page, $data);
-        
     }
     public function Register()
     {
@@ -27,16 +26,24 @@ class Home extends CI_Controller {
             $this->index('Register');
         }
     }
-    // public function email_check($str)
-    // {
-    //     if ($str == 'test')
-    //     {
-    //         $this->form_validation->set_message('username_check', 'The {field} field can not be the word "test"');
-    //         return FALSE;
-    //     }
-    //     else
-    //     {
-    //         return TRUE;
-    //     }
-    // }
+    public function Login()
+    {
+        $this->session->unmark_flash('message');
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<ul class="parsley-errors-list filled" id="parsley-id-4"><li class="parsley-required">', '</li></ul>');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
+        if ($this->form_validation->run() == TRUE){
+            $email=$this->input->post('email');
+            $password=$this->input->post('password');
+            if($result=$this->Auth_model->login($email,$password)){
+                redirect('/', 'refresh');
+            }else{
+                $this->session->set_flashdata('message', 'User Invalid');
+                $this->index();
+            }
+        }else{
+            $this->index();
+        }
+    }
 }

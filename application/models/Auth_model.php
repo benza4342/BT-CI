@@ -9,9 +9,8 @@ class Auth_model extends CI_Model {
     function login($email,$password)
     {
         $this->db->where("email",$email);
-        $this->db->where("password",$password);
-        
-        $query=$this->db->get("user");
+        $this->db->where("password",md5($password));
+        $query=$this->db->get("users");
         if($query->num_rows()>0)
         {
             foreach($query->result() as $rows)
