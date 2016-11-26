@@ -33,4 +33,4 @@
   <script src="<?php echo base_url();?>assets/js/modernizr.min.js"></script>
 </head>
 
-<body>
+<body class="<?php if(!empty($bodyclass)) echo $bodyclass ?>">

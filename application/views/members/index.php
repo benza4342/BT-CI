@@ -1,4 +1,8 @@
-<?php $this->load->view('templates/header');?>
+<?php
+$data = array(
+'bodyclass' => 'fixed-left',
+);
+$this->load->view('templates/header',$data);?>
   <!-- Begin page -->
   <div id="wrapper">
     <?php $this->load->view('templates/sidenav');?>
@@ -57,3 +61,28 @@
       </div>
       <!-- END wrapper -->
       <?php $this->load->view('templates/footer');?>
+        <script>
+          $("#btn-logout").click(function(event) {
+            var id = $(this).attr("id");
+            swal({
+              title: "Warning Data!",
+              text: "Confirm you Logout",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Yes, Logout!",
+              cancelButtonText: "No, Cancel plx!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+            }, function(isConfirm) {
+              if (isConfirm) {
+                window.location.href = "<?php echo site_url('home/Logout') ?>";
+              } else {
+                swal.close();
+                return false;
+              }
+              event.preventDefault();
+              return false;
+            });
+          });
+        </script>

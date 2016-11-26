@@ -68,7 +68,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="text-custom">
+          <a href="#" id="btn-logout" class="text-custom">
             <i class="zmdi zmdi-power"></i>
           </a>
         </li>

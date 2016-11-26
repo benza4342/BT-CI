@@ -1,5 +1,16 @@
-RewriteEngine on
-RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /bt-ci/index.php/$1 [L,QSA]
+RewriteRule ^(.*)$ /bt-ci/index.php/$1 [L]
+
+
+
+
+
+
+
+
+
+
+
+
