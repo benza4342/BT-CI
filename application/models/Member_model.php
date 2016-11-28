@@ -16,9 +16,9 @@ class Member_model extends CI_Model {
     }
 
     public function getmember($id) {
-        $this->db->select('id,email,created_at,users.user_type_id,user_type_desc');
+        $this->db->select('user_id,email,firstname,lastname,created_at,users.user_type_id,user_type_desc');
         $this->db->from('users');
-        $this->db->where('id', $id);
+        $this->db->where('user_id', $id);
         $this->db->join('users_type', 'users.user_type_id = users_type.user_type_id');
         return $this->db->get()->result();
     }

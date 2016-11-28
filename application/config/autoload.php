@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
   |
  */
-$autoload['packages'] = array();
+$autoload['packages'] = [];
 
 /*
   | -------------------------------------------------------------------
@@ -56,10 +56,10 @@ $autoload['packages'] = array();
   |
   | You can also supply an alternative library name to be assigned
   | in the controller:
-  |
+  | 'database','encryption','form_validation'
   |	$autoload['libraries'] = array('user_agent' => 'ua');
  */
-$autoload['libraries'] = ['database','encryption'];
+$autoload['libraries'] = ['database','form_validation','session'];
 
 /*
   | -------------------------------------------------------------------
@@ -80,17 +80,17 @@ $autoload['libraries'] = ['database','encryption'];
   |	$autoload['drivers'] = array('cache' => 'cch');
   |
  */
-$autoload['drivers'] = array();
+$autoload['drivers'] =[];
 
 /*
   | -------------------------------------------------------------------
   |  Auto-load Helper Files
   | -------------------------------------------------------------------
   | Prototype:
-  |
+  | array('url', 'form', 'date');
   |	$autoload['helper'] = array('url', 'file');
  */
-$autoload['helper'] = array('url', 'form', 'date');
+$autoload['helper'] =  ['url','form','date'];
 
 /*
   | -------------------------------------------------------------------
@@ -104,7 +104,7 @@ $autoload['helper'] = array('url', 'form', 'date');
   | config files.  Otherwise, leave it blank.
   |
  */
-$autoload['config'] = array();
+$autoload['config'] = [];
 
 /*
   | -------------------------------------------------------------------
@@ -118,7 +118,7 @@ $autoload['config'] = array();
   | "codeigniter_lang.php" would be referenced as array('codeigniter');
   |
  */
-$autoload['language'] = array();
+$autoload['language'] = [];
 
 /*
   | -------------------------------------------------------------------
@@ -130,7 +130,7 @@ $autoload['language'] = array();
   |
   | You can also supply an alternative model name to be assigned
   | in the controller:
-  |
+  | 'Auth_model', 'Member_model'
   |	$autoload['model'] = array('first_model' => 'first');
  */
-$autoload['model'] = ['Auth_model', 'Member_model'];
+$autoload['model'] = ['Auth_model','Member_model'];

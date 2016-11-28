@@ -1,3 +1,4 @@
+
 <?php
 
 if (!defined('BASEPATH')) {
@@ -16,18 +17,17 @@ class Auth_model extends CI_Model {
         $query = $this->db->get("users");
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $rows) {
-                //add all data to session
                 $newdata = array(
-                    'user_id' => $rows->id,
-                    'user_name' => $rows->username,
+                    'user_id' => $rows->user_id,
                     'user_email' => $rows->email,
+                    'full_name' => $rows->firstname . ' ' . $rows->lastname,
+                    'pic_profile' => $rows->pic_profile,
                     'logged_in' => TRUE,
                 );
             }
-//            $this->session->set_userdata($newdata);
+            $this->session->set_userdata($newdata);
             // $authtext = $this->encryption->encrypt(json_encode(['email' => $email, 'password' => $password]));
-            // if ($remember)
-            //     set_cookie('bt_cookie', $authtext, 86400);
+            //  if ($remember)   set_cookie('bt_cookie', $authtext, 86400);
             return true;
         }
         return false;
@@ -35,7 +35,6 @@ class Auth_model extends CI_Model {
 
     public function add_user() {
         $data = array(
-            'username' => $this->input->post('username'),
             'email' => $this->input->post('email'),
             'password' => md5($this->input->post('password')),
             'created_at' => mdate('%Y-%m-%d %H:%i:%s', now('Asia/Bangkok')),

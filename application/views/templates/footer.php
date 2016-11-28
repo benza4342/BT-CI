@@ -1,3 +1,10 @@
+<footer class="footer">
+    2016 © Sarat Tiwattanajarenpol.
+</footer>
+</div>
+<?php $this->load->view('templates/rightnav'); ?>
+</div>
+<!-- END wrapper -->
 <script>
     var resizefunc = [];
 </script>
@@ -18,6 +25,8 @@
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
 <!-- Toastr js -->
 <script src="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
+<!-- file uploads js -->
+<script src="<?php echo base_url(); ?>assets/plugins/fileuploads/js/dropify.min.js"></script>
 </body>
 
 </html>

@@ -26,26 +26,27 @@ $this->load->view('templates/header', $data);
                                     <thead>
                                     <th>No</th>
                                     <th>Email</th>
-                                    <th>Username</th>
+                                    <th>FullName</th>
                                     <th>UserType</th>
                                     <th>Created</th>
                                     <th>Actions</th>
-                                    </tr>
                                     </thead>
                                     <tbody >
                                         <?php
                                         $index = 1;
                                         foreach ($list as $item):
+                                            echo'<tr>';
                                             echo '<td>' . $index++ . '</td>';
                                             echo '<td>' . $item['email'] . '</td>';
-                                            echo '<td>' . $item['username'] . '</td>';
+                                            echo '<td>' . $item['firstname'] . ' ' . $item['lastname'] . '</td>';
                                             echo '<td>' . $item['user_type_desc'] . '</td>';
                                             echo '<td>' . $item['created_at'] . '</td>';
-                                            $segments = array('member', 'edit', $item['id']);
+                                            $segments = array('member', 'edit', $item['user_id']);
                                             echo'<td class="actions">
                                                  <a href="' . site_url($segments) . '" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                 <a href="" onclick="deleteUser(' . $item['id'] . ')" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                 <a href="" onclick="deleteUser(' . $item['user_id'] . ')" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                             </td>';
+                                            echo'</tr>';
                                         endforeach;
                                         ?>
                                     </tbody>
@@ -60,57 +61,51 @@ $this->load->view('templates/header', $data);
             <!-- container -->
         </div>
         <!-- content -->
-        <footer class="footer">
-            2016 © Adminto.
-        </footer>
-    </div>
-    <?php $this->load->view('templates/rightnav'); ?>
-</div>
-<!-- END wrapper -->
-<?php $this->load->view('templates/footer'); ?>
-<script>
-    $("#btn-logout").click(function (event) {
-        var id = $(this).attr("id");
-        swal({
-            title: "Warning Data!",
-            text: "Confirm you Logout",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, Logout!",
-            cancelButtonText: "No, Cancel plx!",
-            closeOnConfirm: false,
-            closeOnCancel: false
-        }, function (isConfirm) {
-            if (isConfirm) {
-                window.location.href = "<?php echo site_url('home/Logout') ?>";
-            } else {
-                swal.close();
-                return false;
-            }
-            event.preventDefault();
-            return false;
-        });
-    });
-    function deleteUser(id) {
-        event.preventDefault();
-        swal({
-            title: "Are you sure ?",
-            text: "You will not be able to recover this imaginary file!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonClass: 'btn-warning',
-            confirmButtonText: "Yes, delete it!",
-            closeOnConfirm: false
-        }, function () {
-            swal({
-                title: "Deleted!",
-                text: "Your imaginary file has been deleted.",
-                type: "success"}, function () {
-                window.location.href = "<?php echo site_url('Member') ?>";
-            })
-            //memberFactory.deleteMember(id).success((data) => memberFactory.getMemberList().success((data) => $timeout(() => member.member = data, 0)))
-        })
 
-    }
-</script>
+        <?php $this->load->view('templates/footer'); ?>
+        <script>
+            $("#btn-logout").click(function (event) {
+                var id = $(this).attr("id");
+                swal({
+                    title: "Warning Data!",
+                    text: "Confirm you Logout",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, Logout!",
+                    cancelButtonText: "No, Cancel plx!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        window.location.href = "<?php echo site_url('home/Logout') ?>";
+                    } else {
+                        swal.close();
+                        return false;
+                    }
+                    event.preventDefault();
+                    return false;
+                });
+            });
+            function deleteUser(id) {
+                event.preventDefault();
+                swal({
+                    title: "Are you sure ?",
+                    text: "You will not be able to recover this imaginary file!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn-warning',
+                    confirmButtonText: "Yes, delete it!",
+                    closeOnConfirm: false
+                }, function () {
+                    swal({
+                        title: "Deleted!",
+                        text: "Your imaginary file has been deleted.",
+                        type: "success"}, function () {
+                        window.location.href = "<?php echo site_url('Member') ?>";
+                    })
+                    //memberFactory.deleteMember(id).success((data) => memberFactory.getMemberList().success((data) => $timeout(() => member.member = data, 0)))
+                })
+
+            }
+        </script>
